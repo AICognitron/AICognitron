@@ -142,10 +142,10 @@ function Team() {
     },
     // Level 4 - Core Members
     {
-      image: "/assets/team/shakti.jpg",
-      title: "Sakthivel",
+      image: "/assets/team/sakthi.jpg",
+      title: "Sakthivel U",
       subtitle: "Outreach Coordinator",
-      handle: "@shakti",
+      handle: "@sakthi",
       url: "https://linkedin.com/in/",
       department: "AI & Data Science",
       description: "Research and development in AI technologies.",
@@ -183,7 +183,7 @@ function Team() {
     },
     {
       image: "/assets/team/suryaprakash.jpg",
-      title: "Suryaprakash",
+      title: "Suryaprakash M",
       subtitle: "Outreach Coordinator",
       handle: "@suriyaprakash",
       department: "AI & Data Science",
