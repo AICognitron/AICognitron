@@ -11,7 +11,7 @@ function Team() {
       borderColor: "#4F46E5",
       gradient: "linear-gradient(145deg, #4F46E5, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Guiding the department and club with vision and leadership.",
       skills: ["Leadership", "Academics", "Mentorship"],
       projects: ["Department Strategy", "Faculty Development"],
@@ -19,14 +19,14 @@ function Team() {
       year: "Faculty"
     },
     {
-      image: "assets/team/Abinaya.jpg",
+      image: "/assets/team/Abinaya.jpg",
       title: "Ms.Abinaya",
-      subtitle: "Technical Affairs Director",
+      subtitle: "Technical Affairs Lead",
       handle: "@abinaya",
       borderColor: "#10B981",
       gradient: "linear-gradient(210deg, #10B981, #000)",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Supporting club activities and student development.",
       skills: ["Teaching", "Support", "Mentorship"],
       projects: ["Student Guidance"],
@@ -34,21 +34,21 @@ function Team() {
       year: "Faculty"
     },
     {
-      image: "/assets/team/ilakaya.jpeg",
-      title: "Ms.Illakiya",
-      subtitle: "Staff",
+      image: "/assets/team/ilakiya.jpg",
+      title: "Ms.Ilakiya",
+      subtitle: "Next Gen Idea Lead",
       handle: "@she",
       borderColor: "#F59E0B",
       gradient: "linear-gradient(165deg, #F59E0B, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Facilitating club events and academic excellence.",
       skills: ["Teaching", "Event Support"],
       projects: ["Event Facilitation"],
       level: "level1",
       year: "Faculty"
     },
-    // Level 2 - cooordinators  
+    // Alumni (former coordinators) – shown in the Alumni section at the end
     {
       image: "assets/team/pavithran.jpg",
       title: "Pavithran P.K",
@@ -57,12 +57,12 @@ function Team() {
       borderColor: "#EF4444",
       gradient: "linear-gradient(195deg, #EF4444, #000)",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Managing technical programs and club operations.",
       skills: ["Program Management", "Operations", "Technical Leadership"],
       projects: ["Tech Program Coordination"],
-      level: "level2",
-      year: "4th Year"
+      level: "alumni",
+      year: "Alumni"
     },
     {
       image: "/assets/team/akash.jpeg",
@@ -72,12 +72,12 @@ function Team() {
       borderColor: "#8B5CF6",
       gradient: "linear-gradient(225deg, #8B5CF6, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Leading technical teams and innovation initiatives.",
       skills: ["Technical Leadership", "Innovation", "Team Management"],
       projects: ["Innovation Drive"],
-      level: "level2",
-      year: "4th Year"
+      level: "alumni",
+      year: "Alumni"
     },
     {
       image: "/assets/team/sedhumadavan.jpg",
@@ -87,84 +87,84 @@ function Team() {
       borderColor: "#06B6D4",
       gradient: "linear-gradient(135deg, #06B6D4, #000)",
       url: "https://aws.amazon.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Overseeing technical strategy and club technology vision.",
       skills: ["Strategy", "Technology Vision", "Leadership"],
       projects: ["Tech Strategy"],
-      level: "level2",
-      year: "4th Year"
+      level: "alumni",
+      year: "Alumni"
     },
     // Level 3 - Team Leads
     {
       image: "/assets/team/kavi.jpg",
       title: "Kavirajan",
-      subtitle: "Tech Innovate Lead",
+      subtitle: "Technical Head",
       handle: "@kavirajan",
       borderColor: "#EC4899",
       gradient: "linear-gradient(160deg, #EC4899, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Driving innovation and new technology initiatives.",
       skills: ["Innovation", "Tech Leadership"],
       projects: ["Innovate Projects"],
       level: "level3",
-      year: "3rd Year"
+      year: "4th Year"
     },
     {
       image: "/assets/team/Bala.jpg",
       title: "Balavignesh",
-      subtitle: "Tech Developer",
+      subtitle: "Chief Technical Officer",
       handle: "@balavignesh",
       borderColor: "#F97316",
       gradient: "linear-gradient(245deg, #F97316, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Developing and maintaining club platforms and tools.",
       skills: ["Development", "Platform Engineering"],
       projects: ["Platform Development"],
       level: "level3",
-      year: "3rd Year"
+      year: "4th Year"
     },
     {
       image: "/assets/team/subhashree.jpg",
       title: "SubhaShree",
-      subtitle: "Tech Content Curator",
+      subtitle: "Technical Director",
       handle: "@subha",
       borderColor: "#84CC16",
       gradient: "linear-gradient(120deg, #84CC16, #000)",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Curating technical content and resources for the club.",
       skills: ["Content Creation", "Technical Writing"],
       projects: ["Content Curation"],
       level: "level3",
-      year: "3rd Year"
+      year: "4th Year"
     },
     // Level 4 - Core Members
     {
       image: "/assets/team/sakthi.jpg",
       title: "Sakthivel U",
-      subtitle: "Outreach Coordinator",
+      subtitle: "Tech Content Curator",
       handle: "@sakthi",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Research and development in AI technologies.",
       skills: ["AI Research", "Machine Learning"],
       projects: ["AI Research Projects"],
       level: "level4",
-      year: "2nd Year"
+      year: "3rd Year"
     },
     {
       image: "/assets/team/MaheswariS.jpg",
       title: "Maheswari S",
-      subtitle: "Outreach Coordinator",
+      subtitle: "Tech Developer",
       handle: "@janesmith",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       skills: ["Data Science", "Analytics"],
       projects: ["Data Projects"],
       level: "level4",
-      year: "2nd Year"
+      year: "3rd Year"
     },
     {
       image: "/assets/team/elavarasan.jpg",
@@ -174,32 +174,70 @@ function Team() {
       borderColor: "#9C27B0",
       gradient: "linear-gradient(120deg, #9C27B0, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Machine learning model development and deployment.",
       skills: ["Machine Learning", "Python", "TensorFlow"],
       projects: ["ML Model Development"],
       level: "level4",
-      year: "2nd Year"
+      year: "3rd Year"
     },
     {
       image: "/assets/team/suryaprakash.jpg",
       title: "Suryaprakash M",
-      subtitle: "Outreach Coordinator",
+      subtitle: "Tech Innovate Lead",
       handle: "@suriyaprakash",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Creating user-friendly interfaces for AI applications.",
       skills: ["React", "JavaScript", "UI/UX"],
       projects: ["Web Development"],
       level: "level4",
+      year: "3rd Year"
+    },
+    // Level 5 - Outreach Volunteers
+    {
+      image: "/assets/team/dd.png",
+      title: "Deva Dharshini",
+      subtitle: "Outreach Volunteer",
+      handle: "@handle",
+      department: "AI&DS",
+      description: "Outreach Volunteer description here.",
+      skills: ["Outreach", "Coordination"],
+      projects: [],
+      level: "volunteer",
+      year: "2nd Year"
+    },
+    {
+      image: "/assets/team/akash.png",
+      title: "Akash",
+      subtitle: "Outreach Volunteer",
+      handle: "@handle",
+      department: "AI&DS",
+      description: "Outreach Volunteer description here.",
+      skills: ["Outreach", "Coordination"],
+      projects: [],
+      level: "volunteer",
+      year: "2nd Year"
+    },
+    {
+      image: "/assets/team/gowtham.png",
+      title: "Gowtham",
+      subtitle: "Outreach Volunteer",
+      handle: "@handle",
+      department: "AI&DS",
+      description: "Outreach Volunteer description here.",
+      skills: ["Outreach", "Coordination"],
+      projects: [],
+      level: "volunteer",
       year: "2nd Year"
     }
   ];
 
   // Group members by level for sections
   const facultyMembers = teamMembers.filter(member => member.level === "level1");
-  const seniorLeads = teamMembers.filter(member => member.level === "level2");
+  const alumni = teamMembers.filter(member => member.level === "alumni");
   const teamLeads = teamMembers.filter(member => member.level === "level3");
   const coreMembers = teamMembers.filter(member => member.level === "level4");
+  const outreachVolunteers = teamMembers.filter(member => member.level === "level5" || member.level === "volunteer");
 
   return (
     <section className="team-section">
@@ -212,19 +250,6 @@ function Team() {
         <div className="section">
           <div className="card_Container">
             {facultyMembers.map((member, index) => (
-              <TeamCard 
-                key={index} 
-                member={member} 
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Senior Leads Section */}
-        <div className="section">
-          <h5>cooordinators</h5>
-          <div className="card_Container">
-            {seniorLeads.map((member, index) => (
               <TeamCard 
                 key={index} 
                 member={member} 
@@ -246,16 +271,42 @@ function Team() {
           </div>
         </div>
 
-        {/* Core Members Section */}
-        {/* Core Members Section */}
+        {/* Outreach Coordinators Section */}
         <div className="section">
-          <h5>out reach volunteers</h5>
+          <h5>Outreach Coordinators</h5>
           <div className="card_Container">
             {coreMembers.map((member, index) => (
               <TeamCard 
                 key={index} 
                 member={member} 
               />
+            ))}
+          </div>
+        </div>
+
+        {/* Outreach Volunteers Section */}
+        <div className="section">
+          <h5>Outreach Volunteers</h5>
+          <div className="card_Container">
+            {outreachVolunteers.map((member, index) => (
+              <TeamCard 
+                key={index} 
+                member={member} 
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Alumni Section */}
+        <div className="section">
+          <h5>Alumni</h5>
+          <div className="card_Container">
+            {alumni.map((member, index) => (
+              <div className="alumni-item" key={index}>
+                <TeamCard member={member} />
+                <div className="alumni-name">{member.title}</div>
+                <div className="alumni-role">Former {member.subtitle}</div>
+              </div>
             ))}
           </div>
         </div>
