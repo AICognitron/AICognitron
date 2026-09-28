@@ -229,7 +229,32 @@ function Team() {
       projects: [],
       level: "volunteer",
       year: "2nd Year"
-    }
+    },
+    {
+      image: "/assets/team/mahathi.jpeg",
+      title: "Mahathi",
+      subtitle: "Outreach Volunteer", 
+      handle: "@handle",
+      department: "AI&DS",
+      description: "Outreach Volunteer description here.",
+      skills: ["Outreach", "Coordination"],
+      projects: [],
+      level: "volunteer",
+      year: "2nd Year"
+    },
+     {
+      image: "/assets/team/puniska.jpeg",
+      title: "Puniska",
+      subtitle: "Outreach Volunteer",
+      handle: "@handle",
+      department: "AI&DS",
+      description: "Outreach Volunteer description here.",
+      skills: ["Outreach", "Coordination"],
+      projects: [],
+      level: "volunteer",
+      year: "2nd Year"
+    },
+     
   ];
 
   // Group members by level for sections
