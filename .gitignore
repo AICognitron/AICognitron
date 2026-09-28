@@ -1,0 +1,6 @@
+server/data/
+server/uploads/
+node_modules/
+dist/
+_backup*/
+.DS_Store

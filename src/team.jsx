@@ -4,7 +4,7 @@ import './Team.css';
 function Team() {
   const teamMembers = [
     {
-      image: "/assets/team/hod.jpg",
+      image: "/assets/team/hod_2026.jpg",
       title: "Dr.Muthusenthil",
       subtitle: "Head of the Department",
       handle: "@muthusenthil",
@@ -19,7 +19,7 @@ function Team() {
       year: "Faculty"
     },
     {
-      image: "/assets/team/Abinaya.jpg",
+      image: "/assets/team/abinaya_2026.jpg",
       title: "Ms.Abinaya",
       subtitle: "Technical Affairs Lead",
       handle: "@abinaya",
@@ -34,8 +34,8 @@ function Team() {
       year: "Faculty"
     },
     {
-      image: "/assets/team/ilakiya.jpg",
-      title: "Ms.Ilakiya",
+      image: "/assets/team/illakiya_2026.jpg",
+      title: "Ms.Illakiya",
       subtitle: "Next Gen Idea Lead",
       handle: "@she",
       borderColor: "#F59E0B",
@@ -296,7 +296,6 @@ function Team() {
             ))}
           </div>
         </div>
-
         {/* Alumni Section */}
         <div className="section">
           <h5>Alumni</h5>
