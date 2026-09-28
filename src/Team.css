@@ -469,3 +469,11 @@ nav {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Alumni section: name shown below each photo */
+.alumni-item { display: flex; flex-direction: column; align-items: center; }
+.alumni-name {
+  margin-top: 0.6rem; color: #fff; font-weight: 600; font-size: 1.05rem;
+  letter-spacing: 1px; text-transform: uppercase; text-align: center;
+}
+.alumni-role { color: #7ed6df; font-size: 0.85rem; margin-top: 0.15rem; text-align: center; }

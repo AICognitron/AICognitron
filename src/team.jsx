@@ -4,14 +4,14 @@ import './Team.css';
 function Team() {
   const teamMembers = [
     {
-      image: "/assets/team/hod.jpg",
+      image: "/assets/team/hod_2026.jpg",
       title: "Dr.Muthusenthil",
       subtitle: "Head of the Department",
       handle: "@muthusenthil",
       borderColor: "#4F46E5",
       gradient: "linear-gradient(145deg, #4F46E5, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Guiding the department and club with vision and leadership.",
       skills: ["Leadership", "Academics", "Mentorship"],
       projects: ["Department Strategy", "Faculty Development"],
@@ -19,14 +19,14 @@ function Team() {
       year: "Faculty"
     },
     {
-      image: "assets/team/Abinaya.jpg",
+      image: "/assets/team/abinaya_2026.jpg",
       title: "Ms.Abinaya",
-      subtitle: "Technical Affairs Director",
+      subtitle: "Technical Affairs Lead",
       handle: "@abinaya",
       borderColor: "#10B981",
       gradient: "linear-gradient(210deg, #10B981, #000)",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Supporting club activities and student development.",
       skills: ["Teaching", "Support", "Mentorship"],
       projects: ["Student Guidance"],
@@ -34,21 +34,21 @@ function Team() {
       year: "Faculty"
     },
     {
-      image: "/assets/team/ilakaya.jpeg",
+      image: "/assets/team/illakiya_2026.jpg",
       title: "Ms.Illakiya",
-      subtitle: "Staff",
+      subtitle: "Next Gen Idea Lead",
       handle: "@she",
       borderColor: "#F59E0B",
       gradient: "linear-gradient(165deg, #F59E0B, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Facilitating club events and academic excellence.",
       skills: ["Teaching", "Event Support"],
       projects: ["Event Facilitation"],
       level: "level1",
       year: "Faculty"
     },
-    // Level 2 - cooordinators  
+    // Alumni (former coordinators) – shown in the Alumni section at the end
     {
       image: "assets/team/pavithran.jpg",
       title: "Pavithran P.K",
@@ -57,12 +57,12 @@ function Team() {
       borderColor: "#EF4444",
       gradient: "linear-gradient(195deg, #EF4444, #000)",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Managing technical programs and club operations.",
       skills: ["Program Management", "Operations", "Technical Leadership"],
       projects: ["Tech Program Coordination"],
-      level: "level2",
-      year: "4th Year"
+      level: "alumni",
+      year: "Alumni"
     },
     {
       image: "/assets/team/akash.jpeg",
@@ -72,12 +72,12 @@ function Team() {
       borderColor: "#8B5CF6",
       gradient: "linear-gradient(225deg, #8B5CF6, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Leading technical teams and innovation initiatives.",
       skills: ["Technical Leadership", "Innovation", "Team Management"],
       projects: ["Innovation Drive"],
-      level: "level2",
-      year: "4th Year"
+      level: "alumni",
+      year: "Alumni"
     },
     {
       image: "/assets/team/sedhumadavan.jpg",
@@ -87,12 +87,12 @@ function Team() {
       borderColor: "#06B6D4",
       gradient: "linear-gradient(135deg, #06B6D4, #000)",
       url: "https://aws.amazon.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Overseeing technical strategy and club technology vision.",
       skills: ["Strategy", "Technology Vision", "Leadership"],
       projects: ["Tech Strategy"],
-      level: "level2",
-      year: "4th Year"
+      level: "alumni",
+      year: "Alumni"
     },
     // Level 3 - Team Leads
     {
@@ -103,7 +103,7 @@ function Team() {
       borderColor: "#EC4899",
       gradient: "linear-gradient(160deg, #EC4899, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Driving innovation and new technology initiatives.",
       skills: ["Innovation", "Tech Leadership"],
       projects: ["Innovate Projects"],
@@ -118,7 +118,7 @@ function Team() {
       borderColor: "#F97316",
       gradient: "linear-gradient(245deg, #F97316, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Developing and maintaining club platforms and tools.",
       skills: ["Development", "Platform Engineering"],
       projects: ["Platform Development"],
@@ -133,7 +133,7 @@ function Team() {
       borderColor: "#84CC16",
       gradient: "linear-gradient(120deg, #84CC16, #000)",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Curating technical content and resources for the club.",
       skills: ["Content Creation", "Technical Writing"],
       projects: ["Content Curation"],
@@ -147,7 +147,7 @@ function Team() {
       subtitle: "Outreach Coordinator",
       handle: "@sakthi",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Research and development in AI technologies.",
       skills: ["AI Research", "Machine Learning"],
       projects: ["AI Research Projects"],
@@ -160,7 +160,7 @@ function Team() {
       subtitle: "Outreach Coordinator",
       handle: "@janesmith",
       url: "https://linkedin.com/in/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       skills: ["Data Science", "Analytics"],
       projects: ["Data Projects"],
       level: "level4",
@@ -174,7 +174,7 @@ function Team() {
       borderColor: "#9C27B0",
       gradient: "linear-gradient(120deg, #9C27B0, #000)",
       url: "https://github.com/",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Machine learning model development and deployment.",
       skills: ["Machine Learning", "Python", "TensorFlow"],
       projects: ["ML Model Development"],
@@ -186,7 +186,7 @@ function Team() {
       title: "Suryaprakash M",
       subtitle: "Outreach Coordinator",
       handle: "@suriyaprakash",
-      department: "AI & Data Science",
+      department: "AI&DS",
       description: "Creating user-friendly interfaces for AI applications.",
       skills: ["React", "JavaScript", "UI/UX"],
       projects: ["Web Development"],
@@ -197,7 +197,7 @@ function Team() {
 
   // Group members by level for sections
   const facultyMembers = teamMembers.filter(member => member.level === "level1");
-  const seniorLeads = teamMembers.filter(member => member.level === "level2");
+  const alumni = teamMembers.filter(member => member.level === "alumni");
   const teamLeads = teamMembers.filter(member => member.level === "level3");
   const coreMembers = teamMembers.filter(member => member.level === "level4");
 
@@ -212,19 +212,6 @@ function Team() {
         <div className="section">
           <div className="card_Container">
             {facultyMembers.map((member, index) => (
-              <TeamCard 
-                key={index} 
-                member={member} 
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Senior Leads Section */}
-        <div className="section">
-          <h5>cooordinators</h5>
-          <div className="card_Container">
-            {seniorLeads.map((member, index) => (
               <TeamCard 
                 key={index} 
                 member={member} 
@@ -256,6 +243,20 @@ function Team() {
                 key={index} 
                 member={member} 
               />
+            ))}
+          </div>
+        </div>
+
+        {/* Alumni Section */}
+        <div className="section">
+          <h5>Alumni</h5>
+          <div className="card_Container">
+            {alumni.map((member, index) => (
+              <div className="alumni-item" key={index}>
+                <TeamCard member={member} />
+                <div className="alumni-name">{member.title}</div>
+                <div className="alumni-role">Former {member.subtitle}</div>
+              </div>
             ))}
           </div>
         </div>

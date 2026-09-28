@@ -5,8 +5,18 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5174,
-    host: true
+    port: 5190,
+    strictPort: true,
+    host: true,
+    // Think-X backend (server/index.js)
+    proxy: {
+      '/api': 'http://localhost:5091'
+    }
+  },
+  preview: {
+    proxy: {
+      '/api': 'http://localhost:5091'
+    }
   },
   build: {
     outDir: 'dist',

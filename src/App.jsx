@@ -1,7 +1,7 @@
 
 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import './App.css';
 import Navbar from './Navbar';
 import HomeSection from './HomeSection';
@@ -10,10 +10,44 @@ import Team from './team';
 import EventsSection from './EventsSection';
 import BlogsSection from './BlogsSection';
 import { sections } from './sections';
+import ThinkXSection from './ThinkXSection';
+import LoginSection from './LoginSection';
+import { useAuth } from './auth';
 
 
 function App() {
-  const [section, setSection] = useState('home');
+  // Start on the section in the URL hash (so a page refresh stays on the same tab)
+  const [section, setSection] = useState(() => {
+    const hash = window.location.hash.replace('#', '');
+    return sections.some(s => s.key === hash) ? hash : 'home';
+  });
+  const [thinkxTab, setThinkxTab] = useState(null);
+  const { user, logout, checking } = useAuth();
+
+  // Login tab becomes "My Account" once logged in, and a Logout tab is added
+  const navSections = useMemo(() => {
+    const list = sections.map(s =>
+      s.key === 'login' && user ? { ...s, label: 'My Account' } : s
+    );
+    return user ? [...list, { key: 'logout', label: 'Logout' }] : list;
+  }, [user]);
+
+  // Navbar clicks: "logout" logs out and returns to Home, everything else opens that section
+  const selectSection = useCallback(key => {
+    if (key !== 'logout') { setSection(key); return; }
+    logout();
+    setSection('home');
+    setTimeout(() => window.history.replaceState(null, null, window.location.pathname), 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [logout]);
+
+  // Go to a section (and optionally a Think-X sub tab), keeping the URL hash in sync
+  const navigate = (key, tab) => {
+    setSection(key);
+    if (key === 'thinkx') setThinkxTab({ tab: tab || 'overview', at: Date.now() });
+    window.history.pushState(null, null, key === 'home' ? window.location.pathname : `#${key}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Handle initial URL hash and browser back/forward navigation
   useEffect(() => {
@@ -39,6 +73,11 @@ function App() {
     };
   }, []);
 
+ // Separate full-screen login page (no menu / footer) when not logged in
+  if (section === 'login' && !user && !checking) {
+    return <LoginSection standalone onNavigate={navigate} />;
+  }
+
   return (
     <div style={{ 
       minHeight: '100vh', 
@@ -49,13 +88,15 @@ function App() {
       position: 'relative',
       background: '#111',
     }}>
-      <Navbar section={section} setSection={setSection} sections={sections} />
+      <Navbar section={section} setSection={selectSection} sections={navSections} />
       <div style={{ height: 70 }} />
-      {section === 'home' && <HomeSection />}
+      {section === 'home' && <HomeSection onNavigate={navigate} />}
       {section === 'about' && <AboutSection />}
       {section === 'team' && <Team />}
       {section === 'blogs' && <BlogsSection />}
       {section === 'events' && <EventsSection />}
+      {section === 'thinkx' && <ThinkXSection initialTab={thinkxTab} onNavigate={navigate} />}
+      {section === 'login' && <LoginSection onNavigate={navigate} />}
       <footer style={{ 
         textAlign: 'center', 
         color: '#60a5fa', 
