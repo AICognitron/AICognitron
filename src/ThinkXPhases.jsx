@@ -25,7 +25,7 @@ export function PhasePanel({ phase, state, onNavigate, setTab }) {
     return (
       <div className="tx-card" style={{ textAlign: 'center' }}>
         <div style={{ fontSize: '2.5rem' }}>🔒</div>
-        <h2 className="tx-h2">Phase {n} · {phase.name}</h2>
+        <h2 className="tx-h2">Phase {n}{phase?.name ? ` · ${phase.name}` : ''}</h2>
         <p className="tx-p">
           {opensAt ? `This phase is locked. It opens on ${fmtDate(opensAt)}.`
             : beforeStart(state) ? `This phase is locked. Think-X starts on ${fmtDate(state.eventStart)}.`
@@ -46,7 +46,7 @@ export function PhasePanel({ phase, state, onNavigate, setTab }) {
             <span className={`tx-badge ${status}`}>{status === 'done' ? 'Completed' : status === 'live' ? 'Live now' : 'Not started'}</span>
           </span>
         </div>
-        <div className="nm" style={{ fontSize: '2rem' }}>{phase.name}</div>
+        <div className="nm" style={{ fontSize: '2rem' }}>{phase?.name}</div>
         <div className="hd" style={{ fontSize: '1.15rem' }}>{phase.heading}</div>
         <p>{phase.text}</p>
         {n === 1 && phase.twist && <div className="tx-twist"><b>{phase.twistLabel}:</b> {phase.twist}</div>}

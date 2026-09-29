@@ -63,7 +63,7 @@ function ThinkXSection({ initialTab, onNavigate }) {
             <div className="tx-row">
               {beforeStart
                 ? <span className="tx-badge">Starts {fmtDay(state.eventStart)}</span>
-                : <span className="tx-badge live">Phase {active} live · {PHASES[active - 1].name}</span>}
+                : <span className="tx-badge live">Phase {active} live{PHASES[active - 1]?.name ? ` · ${PHASES[active - 1].name}` : ''}</span>}
               <span className="tx-muted">AI Cognitron Club · Organised by AI &amp; DS</span>
             </div>
             <h1 className="tx-h1">THINK-X</h1>
@@ -134,7 +134,8 @@ function HeroClock({ state }) {
     return <Countdown to={state.eventStart} label={`Think-X starts in · ${fmtDate(state.eventStart)}`} />;
   }
   if (dl && now < new Date(dl).getTime()) {
-    return <Countdown to={dl} label={`Phase ${n} · ${PHASES[n - 1].name} ends in`} doneText={`Phase ${n} submissions are closed.`} />;
+    const pName = PHASES[n - 1]?.name ? ` · ${PHASES[n - 1].name}` : '';
+    return <Countdown to={dl} label={`Phase ${n}${pName} ends in`} doneText={`Phase ${n} submissions are closed.`} />;
   }
   if (dl) return <div className="tx-cd-done">Phase {n} submissions closed on {fmtDate(dl)}.</div>;
   return null;
@@ -231,7 +232,7 @@ function RegisterPanel({ onNavigate, setTab }) {
 
   useEffect(() => {
     if (user?.role !== 'participant') return;
-    setForm(f => ({ ...f, leaderName: f.leaderName || user.name, leaderEmail: f.leaderEmail || user.email }));
+    setForm(f => ({ ...f, leaderName: f.leaderName || user?.name || '', leaderEmail: f.leaderEmail || user?.email || '' }));
     request('/api/thinkx/team').then(d => setTeam(d.team)).catch(e => { setErr(e.message); setTeam(null); });
   }, [user, request]);
 

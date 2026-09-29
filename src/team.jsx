@@ -182,7 +182,7 @@ function Team() {
       year: "3rd Year"
     },
     {
-      image: "/assets/team/suryaprakash.jpg",
+      image: "/assets/team/surya.png",
       title: "Suryaprakash M",
       subtitle: "Tech Innovate Lead",
       handle: "@suriyaprakash",
