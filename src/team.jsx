@@ -48,6 +48,21 @@ function Team() {
       level: "level1",
       year: "Faculty"
     },
+    {
+      image: "/assets/team/renganayagi_2026.jpg",
+      title: "Ms.Renganayagi",
+      subtitle: "AI Innovation Lead",
+      handle: "@renganayagi",
+      borderColor: "#06B6D4",
+      gradient: "linear-gradient(150deg, #06B6D4, #000)",
+      url: "https://linkedin.com/in/",
+      department: "AI&DS",
+      description: "Encouraging AI innovation and student projects in the club.",
+      skills: ["AI", "Innovation", "Mentorship"],
+      projects: ["AI Innovation Initiatives"],
+      level: "level1",
+      year: "Faculty"
+    },
     // Alumni (former coordinators) – shown in the Alumni section at the end
     {
       image: "assets/team/pavithran.jpg",
@@ -142,6 +157,36 @@ function Team() {
     },
     // Level 4 - Core Members
     {
+      image: "/assets/team/krithik_2026.jpg",
+      title: "Krithik Dev",
+      subtitle: "Technical Committee Head",
+      handle: "@krithikdev",
+      borderColor: "#DC2626",
+      gradient: "linear-gradient(200deg, #DC2626, #000)",
+      url: "https://github.com/krithikdev25",
+      department: "AI&DS",
+      description: "Leading the technical committee and building the club's events and platforms.",
+      skills: ["Full-stack", "AI/ML", "Event Tech"],
+      projects: ["AI Cognitron Website", "THINK-X Portal"],
+      level: "level4",
+      year: "3rd Year"
+    },
+    {
+      image: "/assets/team/cibi_2026.jpg",
+      title: "Cibi Vijesh",
+      subtitle: "Tech solutions integrator ",
+      handle: "@cibivijesh",
+      borderColor: "#A8A29E",
+      gradient: "linear-gradient(170deg, #A8A29E, #000)",
+      url: "https://linkedin.com/in/",
+      department: "AI&DS",
+      description: "Part of the technical committee, supporting club events and projects.",
+      skills: ["Tech Support", "Events"],
+      projects: ["Club Events"],
+      level: "level4",
+      year: "3rd Year"
+    },
+    {
       image: "/assets/team/sakthi.jpg",
       title: "Sakthivel U",
       subtitle: "Tech Content Curator",
@@ -182,7 +227,7 @@ function Team() {
       year: "3rd Year"
     },
     {
-      image: "/assets/team/surya.png",
+      image: "/assets/team/surya.webp",
       title: "Suryaprakash M",
       subtitle: "Tech Innovate Lead",
       handle: "@suriyaprakash",
@@ -195,7 +240,7 @@ function Team() {
     },
     // Level 5 - Outreach Volunteers
     {
-      image: "/assets/team/dd.png",
+      image: "/assets/team/dd.jpg",
       title: "Deva Dharshini",
       subtitle: "Outreach Volunteer",
       handle: "@handle",
@@ -207,7 +252,7 @@ function Team() {
       year: "2nd Year"
     },
     {
-      image: "/assets/team/akash.png",
+      image: "/assets/team/akash2.jpg",
       title: "Akash",
       subtitle: "Outreach Volunteer",
       handle: "@handle",
@@ -219,7 +264,7 @@ function Team() {
       year: "2nd Year"
     },
     {
-      image: "/assets/team/gowtham.png",
+      image: "/assets/team/gowtham.jpg",
       title: "Gowtham",
       subtitle: "Outreach Volunteer",
       handle: "@handle",

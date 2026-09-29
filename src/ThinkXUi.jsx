@@ -2,41 +2,11 @@ import { useEffect, useState } from 'react';
 
 // Small shared pieces for the Think-X pages
 
-export function Field({ label, req, hint, children }) {
-  return (
-    <div className="tx-field">
-      <label>{label} {req && <span className="req">*</span>}</label>
-      {children}
-      {hint && <span className="tx-muted" style={{ fontSize: '0.8rem' }}>{hint}</span>}
-    </div>
-  );
-}
-
-export function KV({ k, v }) {
-  return (<><dt>{k}</dt><dd>{v}</dd></>);
-}
-
-export function downloadCsv(filename, rows) {
-  const esc = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
-  const csv = rows.map(r => r.map(esc).join(',')).join('\n');
-  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename;
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
-}
-
-// value for <input type="datetime-local"> from an ISO string (local time)
-export function toLocalInput(iso) {
-  if (!iso) return '';
-  const d = new Date(iso);
-  const p = n => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
-}
+export const fmtDate = iso => new Date(iso).toLocaleString('en-IN', {
+  day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit',
+});
 
 // Live countdown clock (days / hours / minutes / seconds)
-
 export function Countdown({ to, label, doneText, compact }) {
   const target = to ? new Date(to).getTime() : 0;
   const [nowMs, setNowMs] = useState(Date.now());

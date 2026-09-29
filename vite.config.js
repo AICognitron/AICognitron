@@ -6,31 +6,22 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5190,
-    strictPort: true,
     host: true,
-    // Think-X backend (server/index.js)
-    proxy: {
-      '/api': 'http://localhost:5091'
-    }
   },
   preview: {
-    proxy: {
-      '/api': 'http://localhost:5091'
-    }
+    port: 5190,
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
+    target: 'es2018',
     rollupOptions: {
       output: {
-        manualChunks: undefined,
-      }
+        // keep the big 3D library in its own file so the rest of the site loads first
+        manualChunks: id => (id.includes('node_modules/three') || id.includes('node_modules/postprocessing') ? 'three' : undefined),
+      },
     },
-    target: 'es2015'
   },
   base: '/',
-  esbuild: {
-    target: 'es2015'
-  }
 })

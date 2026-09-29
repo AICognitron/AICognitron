@@ -16,7 +16,7 @@ const Navbar = ({ section, setSection, sections }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -92,7 +92,7 @@ const Navbar = ({ section, setSection, sections }) => {
       left: 0,
       right: 0,
       height: scrolled ? '60px' : '72px',
-      background: 'rgba(17, 25, 40, 0.85)', // fallback background
+      background: 'rgba(17, 25, 40, 0.96)', // solid background (blur effects made scrolling slow)
       borderBottom: '1.5px solid rgba(255, 255, 255, 0.2)', // fallback border
       boxShadow: '0 4px 24px 0 rgba(31, 38, 135, 0.18)',
       display: 'flex',
@@ -100,8 +100,7 @@ const Navbar = ({ section, setSection, sections }) => {
       justifyContent: 'space-between',
       padding: '0 2.5rem',
       zIndex: 1000,
-      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-      backdropFilter: 'blur(20px)' // Add backdrop filter
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
     }}>
       {/* Logo and Cognitron symbol */}
       <div style={{
@@ -203,8 +202,7 @@ const Navbar = ({ section, setSection, sections }) => {
           top: scrolled ? '60px' : '72px',
           left: 0,
           right: 0,
-          background: 'rgba(17, 25, 40, 0.95)', // fallback background
-          backdropFilter: 'blur(20px)',
+          background: 'rgba(17, 25, 40, 0.95)', // fallback background,
           padding: '2rem 1rem',
           zIndex: 999,
           borderTop: '1.5px solid rgba(255, 255, 255, 0.2)', // fallback border
@@ -255,8 +253,7 @@ const Navbar = ({ section, setSection, sections }) => {
           zIndex: 998,
           opacity: mobileMenuOpen ? 1 : 0,
           visibility: mobileMenuOpen ? 'visible' : 'hidden',
-          transition: 'all 0.3s ease',
-          backdropFilter: 'blur(4px)'
+          transition: 'all 0.3s ease'
         }}
         onClick={() => setMobileMenuOpen(false)}
         aria-hidden="true"
@@ -361,8 +358,7 @@ const Navbar = ({ section, setSection, sections }) => {
 
         /* Enhanced glass morphism effect */
         .glass {
-          backdrop-filter: blur(20px) saturate(180%);
-          -webkit-backdrop-filter: blur(20px) saturate(180%);
+
           background: rgba(17, 25, 40, 0.85);
           border: 1px solid rgba(255, 255, 255, 0.125);
         }
@@ -420,8 +416,7 @@ function NavButton({ children, isActive, onClick, delay, scrolled }) {
           ? '0 4px 12px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
           : isHovered 
             ? '0 4px 8px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)' 
-            : 'inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-        backdropFilter: 'blur(10px)'
+            : 'inset 0 1px 0 rgba(255, 255, 255, 0.05)'
       }}
       aria-pressed={isActive}
       role="button"
@@ -491,7 +486,6 @@ function MobileNavButton({ children, isActive, onClick, delay, tabIndex }) {
           : (isHovered || isFocused)
             ? '0 6px 20px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
             : '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-        backdropFilter: 'blur(15px)',
         position: 'relative',
         overflow: 'hidden'
       }}

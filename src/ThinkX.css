@@ -282,3 +282,36 @@
 .tx-prio small { font-size: 0.68rem; color: #9aa4b2; margin-top: 2px; white-space: nowrap; }
 .tx-order.p1 { background: linear-gradient(45deg, #22c55e, #03B3C3); }
 .tx-doclist { display: flex; flex-direction: column; gap: 0.35rem; }
+
+/* links styled as buttons + submission format list */
+.tx-page a.tx-btn { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; }
+.tx-page .tx-format { margin: 0.5rem 0 0; padding-left: 1.4rem; color: #e0e0e0; line-height: 1.5; }
+.tx-page .tx-format li { margin-bottom: 0.7rem; }
+.tx-page .tx-format li b { color: #fff; }
+
+/* ---------- overview: Week 1 big on top, Weeks 2–4 below (grow on hover / tap) ---------- */
+.tx-weeks { display: grid; gap: 1.25rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 1.5rem; align-items: start; }
+.tx-weeks .tx-week { position: relative; background: #13131b; transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease; }
+.tx-week-body { display: grid; grid-template-areas: "a" "s" "t"; }
+.tx-week-body .wa { grid-area: a; } .tx-week-body .ws { grid-area: s; } .tx-week-body .wt { grid-area: t; }
+
+.tx-weeks .tx-week.featured { grid-column: 1 / -1; padding: 1.8rem 2rem; box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+.tx-week.featured .tx-week-body { grid-template-columns: 1.3fr 1fr; grid-template-areas: "a s" "t s"; column-gap: 2.5rem; }
+.tx-week.featured .nm { font-size: 2.6rem; }
+.tx-week.featured .hd { font-size: 1.3rem; }
+.tx-week.featured p { font-size: 1.02rem; }
+.tx-week.featured .tx-ol { font-size: 1rem !important; }
+.tx-week.featured .award { font-size: 1rem; }
+
+.tx-weeks .tx-week.mini { cursor: pointer; outline: none; }
+.tx-weeks .tx-week.mini.locked { opacity: 0.6; }
+.tx-weeks .tx-week.mini:hover,
+.tx-weeks .tx-week.mini:focus { transform: scale(1.08); z-index: 3; opacity: 1; box-shadow: 0 24px 50px rgba(0,0,0,0.65); }
+
+@media (max-width: 900px) {
+  .tx-weeks { grid-template-columns: 1fr; }
+  .tx-week.featured .tx-week-body { grid-template-columns: 1fr; grid-template-areas: "a" "s" "t"; }
+  .tx-week.featured .nm { font-size: 2rem; }
+  .tx-weeks .tx-week.mini:hover, .tx-weeks .tx-week.mini:focus { transform: scale(1.03); }
+}
+@media (prefers-reduced-motion: reduce) { .tx-weeks .tx-week { transition: none; } }

@@ -6,5 +6,4 @@ export const sections = [
   { key: 'team', label: 'Team' },
   { key: 'blogs', label: 'Blogs' },
   { key: 'events', label: 'Event Schedule' },
-  { key: 'login', label: 'Login' },
 ];

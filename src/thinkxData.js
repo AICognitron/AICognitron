@@ -170,3 +170,27 @@ export const RESULT_POINTS_BY_PHASE = {
 export const RESOURCE_EXT = ['.csv', '.xlsx', '.xls', '.json', '.zip', '.pdf', '.doc', '.docx', '.ppt', '.pptx', '.txt', '.png', '.jpg', '.jpeg', '.ipynb'];
 
 export const fmtSize = n => (n >= MB ? `${(n / MB).toFixed(n % MB ? 1 : 0)} MB` : n < KB ? `${n} bytes` : `${Math.round(n / KB)} KB`);
+
+// =====================================================================
+// THINK-X SETTINGS — edit here (no backend: registration and all
+// submissions are done through Google Forms; answers are written in
+// the Word template of each phase).
+// =====================================================================
+export const EVENT_START = '2026-10-04T09:00:00+05:30';
+// Last date to submit each phase (the next phase is shown as live after this)
+export const DEADLINES = {
+  1: '2026-10-11T09:00:00+05:30',
+  2: '2026-10-18T09:00:00+05:30',
+  3: '2026-10-25T09:00:00+05:30',
+  4: '2026-11-01T09:00:00+05:30',
+};
+export const REGISTER_FORM = 'https://forms.gle/kw4DpRn3e2EPZCY58';
+// Google Form link for each phase submission ('' = not published yet)
+export const SUBMIT_FORMS = { 1: '', 2: '', 3: '', 4: '' };
+// Word template for each phase: put the .docx file in public/templates/
+// and write its file name here, e.g. 'ThinkX_Phase1_Template.docx' ('' = not available yet)
+export const TEMPLATES = { 1: '', 2: '', 3: '', 4: '' };
+
+// Phases students can open. Others show as 🔒 Locked.
+// To unlock a phase add its number, e.g. [1, 2] opens Phase 1 and Phase 2.
+export const OPEN_PHASES = [1];

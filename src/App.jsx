@@ -1,18 +1,17 @@
 
 
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import './App.css';
 import Navbar from './Navbar';
 import HomeSection from './HomeSection';
-import AboutSection from './AboutSection';
-import Team from './team';
-import EventsSection from './EventsSection';
-import BlogsSection from './BlogsSection';
 import { sections } from './sections';
-import ThinkXSection from './ThinkXSection';
-import LoginSection from './LoginSection';
-import { useAuth } from './auth';
+// other pages load only when opened, so the Home page appears faster
+const AboutSection = lazy(() => import('./AboutSection'));
+const Team = lazy(() => import('./team'));
+const EventsSection = lazy(() => import('./EventsSection'));
+const BlogsSection = lazy(() => import('./BlogsSection'));
+const ThinkXSection = lazy(() => import('./ThinkXSection'));
 
 
 function App() {
@@ -22,24 +21,7 @@ function App() {
     return sections.some(s => s.key === hash) ? hash : 'home';
   });
   const [thinkxTab, setThinkxTab] = useState(null);
-  const { user, logout, checking } = useAuth();
-
-  // Login tab becomes "My Account" once logged in, and a Logout tab is added
-  const navSections = useMemo(() => {
-    const list = sections.map(s =>
-      s.key === 'login' && user ? { ...s, label: 'My Account' } : s
-    );
-    return user ? [...list, { key: 'logout', label: 'Logout' }] : list;
-  }, [user]);
-
-  // Navbar clicks: "logout" logs out and returns to Home, everything else opens that section
-  const selectSection = useCallback(key => {
-    if (key !== 'logout') { setSection(key); return; }
-    logout();
-    setSection('home');
-    setTimeout(() => window.history.replaceState(null, null, window.location.pathname), 0);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [logout]);
+  const selectSection = useCallback(key => setSection(key), []);
 
   // Go to a section (and optionally a Think-X sub tab), keeping the URL hash in sync
   const navigate = (key, tab) => {
@@ -73,11 +55,6 @@ function App() {
     };
   }, []);
 
- // Separate full-screen login page (no menu / footer) when not logged in
-  if (section === 'login' && !user && !checking) {
-    return <LoginSection standalone onNavigate={navigate} />;
-  }
-
   return (
     <div style={{ 
       minHeight: '100vh', 
@@ -88,15 +65,16 @@ function App() {
       position: 'relative',
       background: '#111',
     }}>
-      <Navbar section={section} setSection={selectSection} sections={navSections} />
+      <Navbar section={section} setSection={selectSection} sections={sections} />
       <div style={{ height: 70 }} />
       {section === 'home' && <HomeSection onNavigate={navigate} />}
+      <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
       {section === 'about' && <AboutSection />}
       {section === 'team' && <Team />}
       {section === 'blogs' && <BlogsSection />}
       {section === 'events' && <EventsSection />}
-      {section === 'thinkx' && <ThinkXSection initialTab={thinkxTab} onNavigate={navigate} />}
-      {section === 'login' && <LoginSection onNavigate={navigate} />}
+      {section === 'thinkx' && <ThinkXSection initialTab={thinkxTab} />}
+      </Suspense>
       <footer style={{ 
         textAlign: 'center', 
         color: '#60a5fa', 
