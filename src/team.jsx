@@ -155,7 +155,7 @@ function Team() {
       year: "3rd Year"
     },
     {
-      image: "/assets/team/MaheswariS.jpg",
+      image: "/assets/team/maheswari.jpeg",
       title: "Maheswari S",
       subtitle: "Tech Developer",
       handle: "@janesmith",
