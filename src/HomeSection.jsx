@@ -1,24 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import Hyperspeed from './Hyperspeed';
+import React, { useState, lazy, Suspense } from 'react';
+// the 3D road animation (three.js) loads separately, after the page is shown
+const Hyperspeed = lazy(() => import('./Hyperspeed'));
+
+// defined once outside the component: a new object on every render would rebuild the whole 3D scene
+const HYPERSPEED_OPTIONS = {
+  onSpeedUp: () => { },
+  onSlowDown: () => { },
+  distortion: 'turbulentDistortion',
+  length: 400,
+  roadWidth: 10,
+  islandWidth: 2,
+  lanesPerRoad: 4,
+  fov: 90,
+  fovSpeedUp: 150,
+  speedUp: 2,
+  carLightsFade: 0.4,
+  totalSideLightSticks: 20,
+  lightPairsPerRoadWay: 40,
+  shoulderLinesWidthPercentage: 0.05,
+  brokenLinesWidthPercentage: 0.1,
+  brokenLinesLengthPercentage: 0.5,
+  lightStickWidth: [0.12, 0.5],
+  lightStickHeight: [1.3, 1.7],
+  movingAwaySpeed: [60, 80],
+  movingCloserSpeed: [-120, -160],
+  carLightsLength: [400 * 0.03, 400 * 0.2],
+  carLightsRadius: [0.05, 0.14],
+  carWidthPercentage: [0.3, 0.5],
+  carShiftX: [-0.8, 0.8],
+  carFloorSeparation: [0, 5],
+  colors: {
+    roadColor: 0x080808,
+    islandColor: 0x0a0a0a,
+    background: 0x000000,
+    shoulderLines: 0xFFFFFF,
+    brokenLines: 0xFFFFFF,
+    leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
+    rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
+    sticks: 0x03B3C3,
+  }
+};
+
+// skip the heavy animation on phones / small screens and for users who prefer reduced motion
+const canAnimate = () => typeof window !== 'undefined'
+  && window.innerWidth >= 768
+  && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 import './HomeSection.css';
 import './ThinkX.css';
 
 function HomeSection({ onNavigate }) {
-  const [webglSupported, setWebglSupported] = useState(true);
-  const [hyperspeedError, setHyperspeedError] = useState(false);
-
-  useEffect(() => {
-    // Check for WebGL support
+  // decide once, before the first render, whether to show the 3D animation
+  const [webglSupported] = useState(() => {
+    if (!canAnimate()) return false;
     try {
       const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      if (!gl) {
-        setWebglSupported(false);
-      }
-    } catch (e) {
-      setWebglSupported(false);
+      return !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+    } catch {
+      return false;
     }
-  }, []);
+  });
 
   // Hackathon 2026 register button (original Google Form)
   const handleHackathonRegisterClick = () => {
@@ -40,7 +80,7 @@ function HomeSection({ onNavigate }) {
     <>
       <section id="home" className="home-section">
         {/* Hyperspeed Animation - with error handling */}
-        {webglSupported && !hyperspeedError ? (
+        {webglSupported ? (
           <div style={{
             position: 'absolute',
             top: 0,
@@ -52,55 +92,9 @@ function HomeSection({ onNavigate }) {
             pointerEvents: 'none',
           }}>
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-              {(() => {
-                try {
-                  return (
-                    <Hyperspeed
-                      effectOptions={{
-                        onSpeedUp: () => { },
-                        onSlowDown: () => { },
-                        distortion: 'turbulentDistortion',
-                        length: 400,
-                        roadWidth: 10,
-                        islandWidth: 2,
-                        lanesPerRoad: 4,
-                        fov: 90,
-                        fovSpeedUp: 150,
-                        speedUp: 2,
-                        carLightsFade: 0.4,
-                        totalSideLightSticks: 20,
-                        lightPairsPerRoadWay: 40,
-                        shoulderLinesWidthPercentage: 0.05,
-                        brokenLinesWidthPercentage: 0.1,
-                        brokenLinesLengthPercentage: 0.5,
-                        lightStickWidth: [0.12, 0.5],
-                        lightStickHeight: [1.3, 1.7],
-                        movingAwaySpeed: [60, 80],
-                        movingCloserSpeed: [-120, -160],
-                        carLightsLength: [400 * 0.03, 400 * 0.2],
-                        carLightsRadius: [0.05, 0.14],
-                        carWidthPercentage: [0.3, 0.5],
-                        carShiftX: [-0.8, 0.8],
-                        carFloorSeparation: [0, 5],
-                        colors: {
-                          roadColor: 0x080808,
-                          islandColor: 0x0a0a0a,
-                          background: 0x000000,
-                          shoulderLines: 0xFFFFFF,
-                          brokenLines: 0xFFFFFF,
-                          leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
-                          rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
-                          sticks: 0x03B3C3,
-                        }
-                      }}
-                    />
-                  );
-                } catch (error) {
-                  console.warn('Hyperspeed component failed to render:', error);
-                  setHyperspeedError(true);
-                  return null;
-                }
-              })()}
+              <Suspense fallback={null}>
+                <Hyperspeed effectOptions={HYPERSPEED_OPTIONS} />
+              </Suspense>
             </div>
           </div>
         ) : (
@@ -414,7 +408,9 @@ function HomeSection({ onNavigate }) {
                 padding: '10px'
               }}>
                 <img 
-                  src="/assets/codebreak.jpg" 
+                  src="/assets/codebreak.jpg"
+                  loading="lazy"
+                  decoding="async" 
                   alt="Codebreak – Debug, Decode & Design poster" 
                   style={{
                     width: '320px',
@@ -662,7 +658,9 @@ function HomeSection({ onNavigate }) {
                 padding: '10px'
               }}>
                 <img 
-                  src="/assets/thinkx.jpg" 
+                  src="/assets/thinkx.jpg"
+                  loading="lazy"
+                  decoding="async" 
                   alt="Think-X Campus Edition Poster" 
                   style={{
                     width: '320px',
@@ -910,7 +908,9 @@ function HomeSection({ onNavigate }) {
                 padding: '10px'
               }}>
                 <img 
-                  src="/assets/hack25.jpg" 
+                  src="/assets/hack25.jpg"
+                  loading="lazy"
+                  decoding="async" 
                   alt="Hackathon 2025 Poster" 
                   style={{
                     width: '320px',

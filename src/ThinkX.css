@@ -282,3 +282,9 @@
 .tx-prio small { font-size: 0.68rem; color: #9aa4b2; margin-top: 2px; white-space: nowrap; }
 .tx-order.p1 { background: linear-gradient(45deg, #22c55e, #03B3C3); }
 .tx-doclist { display: flex; flex-direction: column; gap: 0.35rem; }
+
+/* links styled as buttons + submission format list */
+.tx-page a.tx-btn { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; }
+.tx-page .tx-format { margin: 0.5rem 0 0; padding-left: 1.4rem; color: #e0e0e0; line-height: 1.5; }
+.tx-page .tx-format li { margin-bottom: 0.7rem; }
+.tx-page .tx-format li b { color: #fff; }

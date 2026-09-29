@@ -182,7 +182,7 @@ function Team() {
       year: "3rd Year"
     },
     {
-      image: "/assets/team/surya.png",
+      image: "/assets/team/surya.webp",
       title: "Suryaprakash M",
       subtitle: "Tech Innovate Lead",
       handle: "@suriyaprakash",
@@ -195,7 +195,7 @@ function Team() {
     },
     // Level 5 - Outreach Volunteers
     {
-      image: "/assets/team/dd.png",
+      image: "/assets/team/dd.jpg",
       title: "Deva Dharshini",
       subtitle: "Outreach Volunteer",
       handle: "@handle",
@@ -207,7 +207,7 @@ function Team() {
       year: "2nd Year"
     },
     {
-      image: "/assets/team/akash.png",
+      image: "/assets/team/akash2.jpg",
       title: "Akash",
       subtitle: "Outreach Volunteer",
       handle: "@handle",
@@ -219,7 +219,7 @@ function Team() {
       year: "2nd Year"
     },
     {
-      image: "/assets/team/gowtham.png",
+      image: "/assets/team/gowtham.jpg",
       title: "Gowtham",
       subtitle: "Outreach Volunteer",
       handle: "@handle",

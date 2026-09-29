@@ -352,10 +352,12 @@ const Hyperspeed = ({ effectOptions = {
         this.container = container;
         this.renderer = new THREE.WebGLRenderer({
           antialias: false,
-          alpha: true
+          alpha: true,
+          powerPreference: 'high-performance'
         });
         this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        // cap the resolution: Retina screens would otherwise render 4x the pixels
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.25));
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
@@ -414,7 +416,21 @@ const Hyperspeed = ({ effectOptions = {
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
 
-        window.addEventListener("resize", this.onWindowResize.bind(this));
+        this.onWindowResize = this.onWindowResize.bind(this);
+        window.addEventListener("resize", this.onWindowResize);
+        this.paused = false;
+        this.stopped = false;
+      }
+
+      // stop drawing while the animation is off-screen or the browser tab is hidden
+      pause() { this.paused = true; }
+      resume() {
+        this.paused = false;
+        if (this.stopped && !this.disposed) {
+          this.stopped = false;
+          this.clock.getDelta();
+          requestAnimationFrame(this.tick);
+        }
       }
 
       onWindowResize() {
@@ -556,9 +572,6 @@ const Hyperspeed = ({ effectOptions = {
           this.camera.updateProjectionMatrix();
         }
 
-        if (this.options.isHyper) {
-          console.log(this.options.isHyper);
-        }
       }
 
       render(delta) {
@@ -579,7 +592,7 @@ const Hyperspeed = ({ effectOptions = {
         }
         
         // Remove event listeners
-        window.removeEventListener("resize", this.onWindowResize.bind(this));
+        window.removeEventListener("resize", this.onWindowResize);
         if (this.container) {
           this.container.removeEventListener("mousedown", this.onMouseDown);
           this.container.removeEventListener("mouseup", this.onMouseUp);
@@ -593,6 +606,7 @@ const Hyperspeed = ({ effectOptions = {
 
       tick() {
         if (this.disposed || !this) return;
+        if (this.paused) { this.stopped = true; return; }
         if (resizeRendererToDisplaySize(this.renderer, this.setSize)) {
           const canvas = this.renderer.domElement;
           this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -1121,7 +1135,23 @@ const Hyperspeed = ({ effectOptions = {
       myApp.loadAssets().then(myApp.init);
     })();
 
+    // pause when scrolled out of view or when the browser tab is hidden
+    const container = hyperspeed.current;
+    let onScreen = true;
+    const sync = () => {
+      const app = appRef.current;
+      if (!app) return;
+      if (onScreen && !document.hidden) app.resume(); else app.pause();
+    };
+    const observer = 'IntersectionObserver' in window
+      ? new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; sync(); })
+      : null;
+    if (observer && container) observer.observe(container);
+    document.addEventListener('visibilitychange', sync);
+
     return () => {
+      if (observer) observer.disconnect();
+      document.removeEventListener('visibilitychange', sync);
       if (appRef.current) {
         appRef.current.dispose();
       }
