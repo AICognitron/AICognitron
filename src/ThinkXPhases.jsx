@@ -5,8 +5,18 @@ import { Countdown, fmtDate } from './ThinkXUi';
 
 const passed = iso => !!iso && Date.now() > new Date(iso).getTime();
 
-export function PhasePanel({ phase, active, beforeStart }) {
+export function PhasePanel({ phase, active, beforeStart, locked }) {
   const n = phase.n;
+  if (locked) {
+    return (
+      <div className="tx-card" style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: '2.5rem' }}>🔒</div>
+        <h2 className="tx-h2">Phase {n} · {phase.name}</h2>
+        <p className="tx-p">This phase is locked. It will open after the previous phase. Watch this page and the club group.</p>
+        {DEADLINES[n - 1] && <p className="tx-muted">Expected to open on {fmtDate(DEADLINES[n - 1])}</p>}
+      </div>
+    );
+  }
   const form = PHASE_FORMS[n];
   const deadline = DEADLINES[n];
   const status = beforeStart || n > active ? 'lock' : n < active ? 'done' : 'live';

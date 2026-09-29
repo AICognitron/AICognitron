@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   PHASES, LEADERBOARD, PRIZES, JUDGE_QUESTIONS, COORDINATORS, CONVENER,
-  EVENT_START, DEADLINES, REGISTER_FORM,
+  EVENT_START, DEADLINES, REGISTER_FORM, OPEN_PHASES,
 } from './thinkxData';
 import { Countdown, fmtDate } from './ThinkXUi';
 import { PhasePanel } from './ThinkXPhases';
@@ -31,7 +31,11 @@ function ThinkXSection({ initialTab }) {
   const tabs = [
     { key: 'overview', label: 'Overview' },
     { key: 'register', label: 'Register' },
-    ...PHASES.map(p => ({ key: `phase${p.n}`, label: `Phase ${p.n} · ${p.name}`, live: !beforeStart && p.n === active })),
+    ...PHASES.map(p => ({
+      key: `phase${p.n}`, label: `Phase ${p.n} · ${p.name}`,
+      locked: !OPEN_PHASES.includes(p.n),
+      live: !beforeStart && p.n === active && OPEN_PHASES.includes(p.n),
+    })),
   ];
 
   return (
@@ -67,9 +71,10 @@ function ThinkXSection({ initialTab }) {
       <div className="tx-tabs" role="tablist">
         {tabs.map(t => (
           <button key={t.key} type="button" role="tab" aria-selected={tab === t.key}
-            className={`tx-tab ${tab === t.key ? 'active' : ''}`}
+            className={`tx-tab ${tab === t.key ? 'active' : ''} ${t.locked ? 'locked' : ''}`}
             onClick={() => setTab(t.key)}>
             {t.live && <span className="dot" />}
+            {t.locked && <span aria-hidden>🔒</span>}
             {t.label}
           </button>
         ))}
@@ -78,7 +83,7 @@ function ThinkXSection({ initialTab }) {
       {tab === 'overview' && <Overview active={beforeStart ? 0 : active} />}
       {tab === 'register' && <RegisterPanel />}
       {PHASES.map(p => tab === `phase${p.n}` && (
-        <PhasePanel key={p.n} phase={p} active={active} beforeStart={beforeStart} />
+        <PhasePanel key={p.n} phase={p} active={active} beforeStart={beforeStart} locked={!OPEN_PHASES.includes(p.n)} />
       ))}
     </section>
   );
@@ -101,8 +106,12 @@ function HeroClock({ active, beforeStart }) {
 function Overview({ active }) {
   return (
     <>
-      <div className="tx-grid" style={{ marginBottom: '1.5rem' }}>
-        {PHASES.map(p => <WeekCard key={p.n} p={p} active={active} deadline={DEADLINES[p.n]} />)}
+      {/* Week 1 big on top, weeks 2–4 below (they grow on hover / tap) */}
+      <div className="tx-weeks">
+        {PHASES.map((p, i) => (
+          <WeekCard key={p.n} p={p} active={active} deadline={DEADLINES[p.n]}
+            featured={i === 0} locked={!OPEN_PHASES.includes(p.n)} />
+        ))}
       </div>
 
       <div className="tx-grid-2" style={{ marginBottom: '1.5rem' }}>
@@ -153,24 +162,32 @@ function Overview({ active }) {
   );
 }
 
-function WeekCard({ p, active, deadline }) {
-  const status = p.n < active ? 'done' : p.n === active ? 'live' : 'lock';
+function WeekCard({ p, active, deadline, featured, locked }) {
+  const status = locked ? 'lock' : p.n < active ? 'done' : p.n === active ? 'live' : 'lock';
+  const label = locked ? '🔒 Locked' : status === 'done' ? 'Completed' : status === 'live' ? 'Live' : 'Upcoming';
   return (
-    <div className={`tx-week ${p.cls}`}>
+    <div className={`tx-week ${p.cls} ${featured ? 'featured' : 'mini'} ${locked ? 'locked' : ''}`}
+      tabIndex={featured ? undefined : 0}>
       <div className="tx-row" style={{ justifyContent: 'space-between' }}>
         <span className="wk">{p.week}</span>
-        <span className={`tx-badge ${status}`} style={{ fontSize: 11, padding: '3px 10px' }}>
-          {status === 'done' ? 'Completed' : status === 'live' ? 'Live' : 'Upcoming'}
-        </span>
+        <span className={`tx-badge ${status}`} style={{ fontSize: 11, padding: '3px 10px' }}>{label}</span>
       </div>
-      <div className="nm">{p.name}</div>
-      {deadline && <div className="tx-muted" style={{ marginTop: '-0.3rem', marginBottom: '0.4rem' }}>Ends {fmtDate(deadline)}</div>}
-      <div className="hd">{p.heading}</div>
-      <p>{p.text}</p>
-      <div className="tx-muted" style={{ fontWeight: 700, marginBottom: 4 }}>SUBMIT{p.submitNote ? ` (${p.submitNote})` : ''}:</div>
-      <ol className="tx-ol" style={{ fontSize: '0.88rem' }}>{p.submit.map(s => <li key={s}>{s}</li>)}</ol>
-      {p.twist && <div className="tx-twist"><b>{p.twistLabel}:</b> {p.twist}</div>}
-      <div className="award">🏆 {p.award}</div>
+      <div className="tx-week-body">
+        <div className="wa">
+          <div className="nm">{p.name}</div>
+          {deadline && <div className="tx-muted" style={{ marginTop: '-0.3rem', marginBottom: '0.4rem' }}>Ends {fmtDate(deadline)}</div>}
+          <div className="hd">{p.heading}</div>
+          <p>{p.text}</p>
+        </div>
+        <div className="ws">
+          <div className="tx-muted" style={{ fontWeight: 700, marginBottom: 4 }}>SUBMIT{p.submitNote ? ` (${p.submitNote})` : ''}:</div>
+          <ol className="tx-ol" style={{ fontSize: '0.88rem' }}>{p.submit.map(s => <li key={s}>{s}</li>)}</ol>
+        </div>
+        <div className="wt">
+          {p.twist && <div className="tx-twist"><b>{p.twistLabel}:</b> {p.twist}</div>}
+          <div className="award">🏆 {p.award}</div>
+        </div>
+      </div>
     </div>
   );
 }

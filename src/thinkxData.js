@@ -190,3 +190,7 @@ export const SUBMIT_FORMS = { 1: '', 2: '', 3: '', 4: '' };
 // Word template for each phase: put the .docx file in public/templates/
 // and write its file name here, e.g. 'ThinkX_Phase1_Template.docx' ('' = not available yet)
 export const TEMPLATES = { 1: '', 2: '', 3: '', 4: '' };
+
+// Phases students can open. Others show as 🔒 Locked.
+// To unlock a phase add its number, e.g. [1, 2] opens Phase 1 and Phase 2.
+export const OPEN_PHASES = [1];
